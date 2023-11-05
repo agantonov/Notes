@@ -18,6 +18,14 @@ ansible 2.9.0
 (ansible2.9)$ ansible-galaxy collection install \
   kubernetes.core:==1.2.1 -p collections
 ```
+### Juniper Support
+```
+pip install xmltodict
+pip install junos-eznc
+pip install jxmlease
+ansible-galaxy collection install juniper.device
+```
+
 ### Deactivate a Python virtual environment
 ```
 (ansible2.9)$ deactivate

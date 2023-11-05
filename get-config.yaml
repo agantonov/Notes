@@ -1,0 +1,16 @@
+# ansible-playbook -i inventory/hosts.yaml playbook/get-config.yaml
+---
+- name: "Get Junos OS configuration"
+  hosts: all
+  connection: juniper.device.pyez
+  gather_facts: true
+  tags: juniper
+  
+  tasks:
+  - name: Backup current config 
+    junos_config:
+      backup: yes
+      backup_options:
+        filename: "{{ inventory_hostname }}.cfg"
+        dir_path: "{{ playbook_dir }}/configs/jvd/{{ lookup('pipe', 'date +%Y%m%d') }}"
+    when: ansible_network_os == 'junipernetworks.junos.junos'

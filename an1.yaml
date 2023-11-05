@@ -1,0 +1,58 @@
+---
+vrfs:
+ - name: L3VPN1
+   router_id: 1.1.0.1
+   protocols:
+   - name: bgp
+     groups:
+     - name: group1
+       local_address: 11.11.11.11
+       peer_as: 65001
+       neighbors:
+       - 22.22.22.22
+       - 33.33.33.33
+       family:
+       - inet any
+       - inet unicast
+     - name: group2
+       local_address: 11.11.11.11
+       peer_as: 65002
+       neighbors:
+       - 22.22.22.33
+       - 33.33.33.44
+       family:
+       - inet any
+       - inet unicast
+   interfaces:
+   - et-0/0/5.100
+   - et-0/0/5.200 
+   route_distinguisher: '65000:1'
+   vrf_target: '65000:1'
+ - name: L3VPN2
+   router_id: 1.1.0.1
+   protocols:
+   - name: bgp
+     groups:
+     - name: group3
+       local_address: 11.11.11.11
+       peer_as: 65001
+       neighbors:
+       - 44.22.22.22
+       - 55.33.33.33
+       family:
+       - inet any
+       - inet unicast
+     - name: group4
+       local_address: 11.11.11.11
+       peer_as: 65002
+       neighbors:
+       - 66.22.22.33
+       - 77.33.33.44
+       family:
+       - inet any
+       - inet unicast
+   interfaces:
+   - et-0/0/6.100
+   - et-0/0/6.200 
+   route_distinguisher: '65000:2'
+   vrf_target: '65000:2'
